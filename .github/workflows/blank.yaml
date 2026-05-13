@@ -8,5 +8,5 @@ jobs:
       - name: check the code
         uses: actions/checkout@v4
       - name: print index.html
-        run: cat ds.yaml
+        run: cat ds.yml
       
