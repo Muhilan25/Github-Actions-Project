@@ -1,12 +1,20 @@
-name: hello world
+name: static website
 on: workflow_dispatch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: check the code
         uses: actions/checkout@v4
-      - name: print index.html
-        run: cat ds.yml
-      
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+      - name: code to s3
+        run: |
+          aws s3 sync ./ s3://github-actions-aws-demo/
+          --exclude "*" \
+          --include "index.html"
