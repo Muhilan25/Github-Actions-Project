@@ -1,24 +1,15 @@
 name: hello world
-on: workflow_dispatch
-  
+on: 
+  push:
+    branch:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Build step
-        run: echo "a demo"
-
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: test step
-        run: echo "a test"
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: deploy step
-        run: echo "a deploy"
+      - name: check the code
+        uses: actions/checkout@v4
+      - name: print index.html
+        run: cat ds.yml
+      
