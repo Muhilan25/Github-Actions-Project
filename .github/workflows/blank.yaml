@@ -1,8 +1,5 @@
 name: hello world
-on: 
-  push:
-    branch:
-      - main
+on: workflow_dispatch
 
 jobs:
   build:
@@ -11,5 +8,5 @@ jobs:
       - name: check the code
         uses: actions/checkout@v4
       - name: print index.html
-        run: cat ds.yml
+        run: cat ds.yaml
       
